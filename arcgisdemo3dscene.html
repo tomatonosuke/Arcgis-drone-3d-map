@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Load a basic WebScene - 4.0</title>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.0/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.0/"></script>
+
+  <script>
+    require([
+        "esri/views/MapView",
+        "esri/views/SceneView",
+        "esri/WebScene",
+        "dojo/domReady!"
+    ], function(
+      MapView, SceneView, WebScene, dom
+    ) {
+
+
+      /************************************************************
+       * Creates a new WebScene instance. A WebScene must reference
+       * a PortalItem ID that represents a WebScene saved to
+       * arcgis.com or an on-premise portal.
+       *
+       * To load a WebScene from an on-premise portal, set the portal
+       * url in esriConfig.portalUrl.
+       ************************************************************/
+      var scene = new WebScene({
+        portalItem: { // autocasts as new PortalItem()
+          id: "496fe63981884736b5c9f0f3431d04e9"
+        }
+      });
+
+      var map1 = new WebMap({
+          portalItem:{
+              id:
+          }
+      })
+
+      /************************************************************
+       * Set the WebScene instance to the map property in a SceneView.
+       ************************************************************/
+      var Sview = new SceneView({
+        map: scene,
+        container: "viewDiv",
+        padding: {
+          right:400
+        }
+      }).then(function() {
+        // when the scene and view resolve, display the scene's
+        // title in the DOM
+
+
+      });
+
+        var Mview = MapView({
+
+            container: "viewDiv",     // Reference to the scene div created in step 5
+            map: map,                 // Reference to the map object created before the scene
+            scale: 50000000,          // Sets the initial scale to 1:50,000,000
+            center: [-101.17, 21.78],  // Sets the center point of view with lon/lat
+            padding:{
+                right:4
+            }
+        });
+    });
+  </script>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+    #viewRight{
+        font-size:24px;
+        font-family:メイリオ,sans-serif;
+        padding:0;
+        text-align:center;
+        width:25%;
+        z-index: 99;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.8);
+
+    }
+    h1{
+        font-size: 32px;
+    }
+
+  </style>
+
+</head>
+
+<body>
+    <div id="viewDiv">
+        <span id = "viewRight">
+            <h1>3D地図 デモ</h1>
+
+        </span>
+    </div>
+</body>
+
+</html>
